@@ -9,7 +9,7 @@ package aspects;
  */
 public aspect LoadBalancingKMSClientProviderDebug {
 	pointcut doOpPointcut() :
-	 call(* *.LoadBalancingKMSClientProvider.doOp(* , int ) ) ;
+	 call(* org.apache.hadoop.crypto.key.kms.LoadBalancingKMSClientProvider.doOp(* , int ) ) ;
 
 	after() throwing (Exception e): doOpPointcut() {
 		System.err.println("HADOOP-13132:");
