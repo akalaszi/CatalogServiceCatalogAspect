@@ -3,9 +3,9 @@
 ###Background
 As per https://issues.apache.org/jira/browse/HADOOP-13132 ClassCastException
 can be thrown at LoadBalancingKMSClientProvider.decryptEncryptedKey which
-hides the information from the underlying AuthenticationException. This This
-aspect prints the stacktrace and the message of the AuthenticationException
-to the stderr before the ClassCastException is thrown.
+hides the information from the underlying AuthenticationException. The
+aspect in this project prints the stacktrace and the message of the AuthenticationException
+to the stderr before the following ClassCastException is thrown:
 
 ```
 java.lang.ClassCastException: 
@@ -19,7 +19,6 @@ decryptEncryptedKey(LoadBalancingKMSClientProvider.java:189)
 - mvn package
 - java -jar target/loadbalancingkmsclientprovideraspect-1.0-SNAPSHOT.jar 
 [this will throw the ClassCastException]
-
 
 ###How to Install AspectJ 
 - Download latest aspectj jar: https://eclipse.org/aspectj/downloads.php
