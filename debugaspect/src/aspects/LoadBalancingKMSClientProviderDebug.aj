@@ -16,4 +16,7 @@ public aspect LoadBalancingKMSClientProviderDebug {
 		e.printStackTrace();
 	}
 
+	after() returning() : doOpPointcut() {
+		System.err.println("org.apache.hadoop.crypto.key.kms.LoadBalancingKMSClientProvider.doOp returned");
+	}
 }
