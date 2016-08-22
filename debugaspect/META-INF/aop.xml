@@ -1,0 +1,14 @@
+<!-- based on http://andrewclement.blogspot.hu/2009/02/load-time-weaving-basics.html -->
+<aspectj>
+
+	<aspects>
+		<aspect name="aspects.LoadBalancingKMSClientProviderDebug" />
+	</aspects>
+
+	<weaver options="-showWeaveInfo -verbose">
+		<include
+			within="org.apache.hadoop.crypto.key.kms.LoadBalancingKMSClientProvider" />
+	</weaver>
+
+</aspectj>
+
