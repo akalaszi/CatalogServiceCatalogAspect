@@ -26,11 +26,10 @@ How to Install AspectJ and Run Custom Aspects
 - edit the ajc shell script: add $ASPECTJ_HOME/lib/aspectjrt.jar to the classpath
 - dir with ajc to the PATH
 - cd LoadBalancingKMSClientProviderAspect/debugaspect/
-- compile : ajc -outjar aspect.jar  src/aspects/LoadBalancingKMSClientProviderDebug.aj
-- jar uf aspect.jar src/META-INF/*
+- compile : ajc -outjar aspect.jar src/aspects/LoadBalancingKMSClientProviderDebug.aj
+- jar uf aspect.jar META-INF/*
 - cp <pathToAspectj>/lib/aspectjweaver.jar <pathToAspectj>/lib/aspectjrt.jar .
-- java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar" -jar 
-
+- java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar" -jar ../testenvironment/target/loadbalancingkmsclientprovideraspect-1.0-SNAPSHOT.jar
 
  https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
  http://andrewclement.blogspot.hu/2009/02/load-time-weaving-basics.html
