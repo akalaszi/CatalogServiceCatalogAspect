@@ -1,7 +1,7 @@
-#Debugging environment and Aspect for HADOOP-13132
+#Debugging environment and Aspect for IMPALA-3949 
 
 ###Background
-https://issues.cloudera.org/browse/IMPALA-3949 
+As described at https://issues.cloudera.org/browse/IMPALA-3949 the following method swallows exception, which makes debugging prod env more difficult.
 
 ```
 public static boolean copyToLocal(Path source, Path dest) {
@@ -14,6 +14,8 @@ public static boolean copyToLocal(Path source, Path dest) {
 336     return true;
 337   }
 ```
+
+This aspect below prints the stacktrace of the swallowed IOException to the stderr without the need of recompiling Hadoop.
 
 ###How to Compile Test Environment
 - cd testenvironment
@@ -36,7 +38,4 @@ public static boolean copyToLocal(Path source, Path dest) {
 ###Links
 - https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
 - http://andrewclement.blogspot.hu/2009/02/load-time-weaving-basics.html
-
-
-
 
