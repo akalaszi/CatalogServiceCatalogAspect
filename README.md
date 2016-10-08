@@ -15,6 +15,8 @@ public static boolean copyToLocal(Path source, Path dest) {
 337   }
 ```
 
+https://github.com/cloudera/Impala/blob/cdh5-trunk/fe/src/main/java/org/apache/impala/common/FileSystemUtil.java#L377
+
 This aspect below prints the stacktrace of the swallowed IOException to the stderr without the need of recompiling Hadoop.
 
 ###How to Compile Test Environment
@@ -31,11 +33,17 @@ This aspect below prints the stacktrace of the swallowed IOException to the stde
 
 ###How to build & run AspectJ 
 - cd CatalogServiceCatalogAspect/debugaspect/
-- rm -f aspect.jar;ajc -cp filesystem-test-env-1.0-SNAPSHOT.jar:aspectjrt.jar -outjar aspect.jar src/aspects/*.aj;jar uf aspect.jar META-INF/
 - Copy here the two jars from AspectJ: cp /some/dir/aspect/lib/aspectjweaver.jar /some/dir/aspect/lib/aspectjrt.jar .
+- run test.sh or:
+- rm -f aspect.jar;ajc -cp filesystem-test-env-1.0-SNAPSHOT.jar:aspectjrt.jar -outjar aspect.jar src/aspects/*.aj;jar uf aspect.jar META-INF/
 - java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar:filesystem-test-env-1.0-SNAPSHOT.jar" org.akalaszi.TestEnv
 
 ###Links
 - https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
 - http://andrewclement.blogspot.hu/2009/02/load-time-weaving-basics.html
 
+###
+Tested with 
+java version "1.8.0_60"
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
