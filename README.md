@@ -31,9 +31,9 @@ This aspect below prints the stacktrace of the swallowed IOException to the stde
 
 ###How to build & run AspectJ 
 - cd CatalogServiceCatalogAspect/debugaspect/
-- rm -f aspect.jar;ajc -cp fileutilaspect-1.0-SNAPSHOT.jar:aspectjrt.jar -outjar aspect.jar src/aspects/*.aj;jar uf aspect.jar META-INF/*
+- rm -f aspect.jar;ajc -cp filesystem-test-env-1.0-SNAPSHOT.jar:aspectjrt.jar -outjar aspect.jar src/aspects/*.aj;jar uf aspect.jar META-INF/
 - Copy here the two jars from AspectJ: cp /some/dir/aspect/lib/aspectjweaver.jar /some/dir/aspect/lib/aspectjrt.jar .
-- java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar:fileutilaspect-1.0-SNAPSHOT.jar" org.akalaszi.TestEnv
+- java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar:filesystem-test-env-1.0-SNAPSHOT.jar" org.akalaszi.TestEnv
 
 ###Links
 - https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
