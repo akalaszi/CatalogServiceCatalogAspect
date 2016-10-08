@@ -15,9 +15,10 @@ public static boolean copyToLocal(Path source, Path dest) {
 337   }
 ```
 
+This has already been fixed in the master branch of Impala:
 https://github.com/cloudera/Impala/blob/cdh5-trunk/fe/src/main/java/org/apache/impala/common/FileSystemUtil.java#L377
 
-This aspect below prints the stacktrace of the swallowed IOException to the stderr without the need of recompiling Hadoop.
+This project provides an aspect that prints the stacktrace of the swallowed IOException to the stderr without the need of recompiling Hadoop/Impala.
 
 ###How to Compile Test Environment
 - cd testenvironment
