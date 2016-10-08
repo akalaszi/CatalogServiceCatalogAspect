@@ -4,12 +4,9 @@
 	<aspects>
 		<aspect name="aspects.FileSystemAspect" />
 	</aspects>
-
+ 
 	<weaver options="-showWeaveInfo -verbose -debug">
-		<include
-			within="org.apache.hadoop.fs.FileSystem" />
-		<include
-			within="org.apache.hadoop.fs.Path" />
+		<include within="com.cloudera.impala.common.FileSystemUtil" />
 	</weaver>
 
 </aspectj>
