@@ -2,12 +2,14 @@
 <aspectj>
 
 	<aspects>
-		<aspect name="aspects.LoadBalancingKMSClientProviderDebug" />
+		<aspect name="aspects.FileSystemAspect" />
 	</aspects>
 
 	<weaver options="-showWeaveInfo -verbose -debug">
 		<include
-			within="org.apache.hadoop.crypto.key.kms.LoadBalancingKMSClientProvider" />
+			within="org.apache.hadoop.fs.FileSystem" />
+		<include
+			within="org.apache.hadoop.fs.Path" />
 	</weaver>
 
 </aspectj>

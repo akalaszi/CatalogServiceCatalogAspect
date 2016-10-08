@@ -1,23 +1,24 @@
 #Debugging environment and Aspect for HADOOP-13132
 
 ###Background
-As per https://issues.apache.org/jira/browse/HADOOP-13132 ClassCastException
-can be thrown at LoadBalancingKMSClientProvider.decryptEncryptedKey which
-hides the information from the underlying AuthenticationException. The
-aspect in this project prints the stacktrace and the message of the AuthenticationException
-to the stderr before the following ClassCastException is thrown:
+https://issues.cloudera.org/browse/IMPALA-3949 
 
 ```
-java.lang.ClassCastException: 
-org.apache.hadoop.security.authentication.client.AuthenticationException 
-cannot be cast to java.security.GeneralSecurityException at org.apache.hadoop.crypto.key.kms.LoadBalancingKMSClientProvider.
-decryptEncryptedKey(LoadBalancingKMSClientProvider.java:189) 
+public static boolean copyToLocal(Path source, Path dest) {
+330     try {
+331       FileSystem fs = source.getFileSystem(CONF);
+332       fs.copyToLocalFile(source, dest);
+333     } catch (IOException e) {
+334       return false;
+335     }
+336     return true;
+337   }
 ```
 
 ###How to Compile Test Environment
 - cd testenvironment
 - mvn package
-- java -jar target/loadbalancingkmsclientprovideraspect-1.0-SNAPSHOT.jar 
+- java -jar target/fileutilaspect-1.0-SNAPSHOT.jar
 [this will throw the ClassCastException]
 
 ###How to Install AspectJ 
@@ -27,10 +28,10 @@ decryptEncryptedKey(LoadBalancingKMSClientProvider.java:189)
 - add /some/dir/aspect/bin to the PATH
 
 ###How to build & run AspectJ 
-- cd LoadBalancingKMSClientProviderAspect/debugaspect/
-- rm -f aspect.jar;ajc -outjar aspect.jar src/aspects/LoadBalancingKMSClientProviderDebug.aj;jar uf aspect.jar META-INF/*
-- cp /some/dir/aspect/lib/aspectjweaver.jar /some/dir/aspect/lib/aspectjrt.jar .
-- java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar:loadbalancingkmsclientprovideraspect-1.0-SNAPSHOT.jar" org.akalaszi.TestEnv
+- cd CatalogServiceCatalogAspect/debugaspect/
+- rm -f aspect.jar;ajc -cp fileutilaspect-1.0-SNAPSHOT.jar:aspectjrt.jar -outjar aspect.jar src/aspects/*.aj;jar uf aspect.jar META-INF/*
+- Copy here the two jars from AspectJ: cp /some/dir/aspect/lib/aspectjweaver.jar /some/dir/aspect/lib/aspectjrt.jar .
+- java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar:fileutilaspect-1.0-SNAPSHOT.jar" org.akalaszi.TestEnv
 
 ###Links
 - https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html

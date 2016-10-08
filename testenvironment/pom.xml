@@ -2,14 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.akalaszi.aspects</groupId>
-	<artifactId>loadbalancingkmsclientprovideraspect</artifactId>
+	<artifactId>fileutilaspect</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>loadbalancingkmsclientprovideraspect</name>
+	<name>fileutilaspectaspect</name>
 
-	<url>https://github.com/akalaszi/LoadBalancingKMSClientProviderAspect</url>
 	<scm>
-		<url>https://github.com/akalaszi/LoadBalancingKMSClientProviderAspect</url>
 		<developerConnection>Adrian Kalaszi</developerConnection>
 	</scm>
 
@@ -31,7 +29,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>org.akalaszi.TestEnv</Main-Class>
+										<Main-Class>Start</Main-Class>
 									</manifestEntries>
 								</transformer>
 							</transformers>

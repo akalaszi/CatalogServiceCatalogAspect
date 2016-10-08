@@ -1,14 +1,22 @@
 package org.akalaszi;
-
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 
-import org.apache.hadoop.crypto.key.kms.LoadBalancingKMSClientProvider;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 
 public class TestEnv {
 
-	public static void main(String[] args) throws IOException, GeneralSecurityException {
-		new LoadBalancingKMSClientProvider().decryptEncryptedKey();
+	public static void main(String[] args) throws IOException {
+		Path source = new Path();
+		try {
+			System.err.println("1");
+			FileSystem fs = source.getFileSystem(new Configuration());
+			System.err.println("2");
+			fs.copyToLocalFile(source, new Path());
+		} catch (IOException e) {
+			System.err.println("false");
+		}
 	}
 
 }
