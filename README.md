@@ -1,6 +1,21 @@
 #Debugging environment and Aspect for IMPALA-3949 
 
 ###Background
+Imapala catalogd may unable to find UDF jars while the following error is logged at the service log, eg: 
+
+```
+E1007 19:38:56.543897 21758 CatalogServiceCatalog.java:508] Skipping function load: r3_add_file_v3
+Java exception follows:
+com.cloudera.impala.common.ImpalaRuntimeException: Error extracting functions
+        at com.cloudera.impala.catalog.CatalogServiceCatalog.extractFunctions(CatalogServiceCatalog.java:462)
+        at com.cloudera.impala.catalog.CatalogServiceCatalog.loadJavaFunctions(CatalogServiceCatalog.java:503)
+        at com.cloudera.impala.catalog.CatalogServiceCatalog.reset(CatalogServiceCatalog.java:559)
+        at com.cloudera.impala.service.JniCatalog.<init>(JniCatalog.java:100)
+Caused by: com.cloudera.impala.common.ImpalaRuntimeException: Error loading Java function: lab_samp.r3_add_file_v3. Couldn't copy hdfs:///<path-to-jar-file> to local path: file:/tmp/c985556e-cdef-4356-9e72-3a4f41554b2f.jar
+        at com.cloudera.impala.catalog.CatalogServiceCatalog.extractFunctions(CatalogServiceCatalog.java:424)
+        ... 3 more
+```
+
 As described at https://issues.cloudera.org/browse/IMPALA-3949 the following method swallows exception, which makes debugging prod env more difficult.
 
 ```
