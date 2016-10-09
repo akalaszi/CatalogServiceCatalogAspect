@@ -54,6 +54,11 @@ This project provides an aspect that prints the stacktrace of the swallowed IOEx
 - rm -f aspect.jar;ajc -cp filesystem-test-env-1.0-SNAPSHOT.jar:aspectjrt.jar -outjar aspect.jar src/aspects/*.aj;jar uf aspect.jar META-INF/
 - java -javaagent:aspectjweaver.jar -classpath "aspect.jar:aspectjrt.jar:filesystem-test-env-1.0-SNAPSHOT.jar" org.akalaszi.TestEnv
 
+### Add that to catalogd
+Copy aspect.jar, aspectjrt.jar and aspectjweaver.jar to /tmp on the catalogd host, and temporarily add the followings to:
+- ClouderaManager->Impala->Configuration->Java Configuration Options for Catalog Server: -javaagent:/tmp/aspectjweaver.jar
+- ClouderaManager->Impala->Configuration->Impala Service Environment Advanced Configuration Snippet (Safety Valve)-> AUX_CLASSPATH="/tmp/aspect.jar:/tmp/aspectjrt.jar"
+
 ###Links
 - https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
 - http://andrewclement.blogspot.hu/2009/02/load-time-weaving-basics.html
