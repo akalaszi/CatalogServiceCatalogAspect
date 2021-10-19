@@ -1,6 +1,6 @@
-#Debugging environment and Aspect for IMPALA-3949 
+# Debugging environment and Aspect for IMPALA-3949 
 
-###Background
+### Background
 Imapala catalogd may unable to find UDF jars while the following error is logged at the service log, eg: 
 
 ```
@@ -35,19 +35,19 @@ https://github.com/cloudera/Impala/blob/cdh5-trunk/fe/src/main/java/org/apache/i
 
 This project provides an aspect that prints the stacktrace of the swallowed IOException to the stderr without the need of recompiling Hadoop/Impala.
 
-###How to Compile Test Environment
+### How to Compile Test Environment
 - cd testenvironment
 - mvn package
 - java -jar target/fileutilaspect-1.0-SNAPSHOT.jar
 [this will throw the ClassCastException]
 
-###How to Install AspectJ 
+### How to Install AspectJ 
 - Download latest aspectj jar: https://eclipse.org/aspectj/downloads.php
 - Launch the installer jar: mkdir /some/dir/aspect;java -jar aspectj-1.8.9.jar -to /some/dir/aspect
 - edit the ajc shell script: vi /some/dir/aspect/bin/add $ASPECTJ_HOME/lib/aspectjrt.jar to the classpath
 - add /some/dir/aspect/bin to the PATH
 
-###How to build & run AspectJ 
+### How to build & run AspectJ 
 - cd CatalogServiceCatalogAspect/debugaspect/
 - Copy here the two jars from AspectJ: cp /some/dir/aspect/lib/aspectjweaver.jar /some/dir/aspect/lib/aspectjrt.jar .
 - run test.sh or:
@@ -59,7 +59,7 @@ Copy aspect.jar, aspectjrt.jar and aspectjweaver.jar to /tmp on the catalogd hos
 - ClouderaManager->Impala->Configuration->Java Configuration Options for Catalog Server: -javaagent:/tmp/aspectjweaver.jar
 - ClouderaManager->Impala->Configuration->Impala Service Environment Advanced Configuration Snippet (Safety Valve)-> AUX_CLASSPATH="/tmp/aspect.jar:/tmp/aspectjrt.jar"
 
-###Links
+### Links
 - https://eclipse.org/aspectj/doc/next/devguide/ajc-ref.html
 - http://andrewclement.blogspot.hu/2009/02/load-time-weaving-basics.html
 
